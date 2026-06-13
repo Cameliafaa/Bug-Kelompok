@@ -6,8 +6,7 @@ Project CRUD sederhana untuk latihan Git Branch, Pull Request, Review, dan Confl
 
 ## Repository Maintainer
 
-Nama: Camelia Fajaryani
-NIM: 231011701090
+Camelia Fajaryani - 231011701090
 
 Tugas:
 
@@ -27,7 +26,7 @@ Tugas:
 
 ## Pembagian Bug
 
-- Developer 1: Memperbaiki bug di index.php
-- Developer 2: Memperbaiki bug di tambah.php
-- Developer 3: Memperbaiki bug di edit.php
-- Developer 4: Memperbaiki bug di hapus.php
+- Gilmanusidki: Memperbaiki bug di index.php + style.css
+- Meraldy Ridho Fadillah: Memperbaiki bug di tambah.php
+- Asti Zahro Faa'idzah: Memperbaiki bug di edit.php
+- Intan: Memperbaiki bug di hapus.php
