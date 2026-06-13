@@ -1,32 +1,60 @@
 <?php
 session_start();
 
-if (isset($_POST['simpan'])) {
-    $dataBaru = [
-        "id" => count($_SESSION['mahasiswa']) + 1,
-        "nama" => $_POST['nama'],
-        "nim" => $_POST['nim'],
-        "jurusan" => $_POST['jurusan']
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nama = $_POST['nama'];
+    $nim = $_POST['nim'];
+    $jurusan = $_POST['jurusan'];
+
+    // Membuat ID otomatis (mencari ID terakhir + 1)
+    $id = 1;
+    if (count($_SESSION['mahasiswa']) > 0) {
+        $last_item = end($_SESSION['mahasiswa']);
+        $id = $last_item['id'] + 1;
+    }
+
+    // Memasukkan data baru ke session array
+    $_SESSION['mahasiswa'][] = [
+        "id" => $id,
+        "nama" => $nama,
+        "nim" => $nim,
+        "jurusan" => $jurusan
     ];
 
-    // BUG 2: data baru belum dimasukkan ke session
-    // $_SESSION['mahasiswa'][] = $dataBaru;
-
+    // Mengembalikan ke halaman index
     header("Location: index.php");
+    exit;
 }
 ?>
 
-<h2>Tambah Mahasiswa</h2>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Tambah Mahasiswa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<form method="POST">
-    <label>Nama</label><br>
-    <input type="text" name="nama"><br><br>
+<div class="container">
+    <h2>Tambah Data Mahasiswa</h2>
+    <form method="POST" action="">
+        <div class="form-group">
+            <label>Nama:</label>
+            <input type="text" name="nama" required>
+        </div>
+        <div class="form-group">
+            <label>NIM:</label>
+            <input type="text" name="nim" required>
+        </div>
+        <div class="form-group">
+            <label>Jurusan:</label>
+            <input type="text" name="jurusan" required>
+        </div>
+        <button type="submit" class="btn">Simpan Data</button>
+        <a href="index.php" class="btn btn-delete" style="text-decoration:none;">Batal</a>
+    </form>
+</div>
 
-    <label>NIM</label><br>
-    <input type="text" name="nim"><br><br>
-
-    <label>Jurusan</label><br>
-    <input type="text" name="jurusan"><br><br>
-
-    <button type="submit" name="simpan">Simpan</button>
-</form>
+</body>
+</html>
