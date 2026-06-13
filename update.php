@@ -13,7 +13,8 @@ foreach ($_SESSION['mahasiswa'] as $mhs) {
 
 if (isset($_POST['update'])) {
     foreach ($_SESSION['mahasiswa'] as $index => $mhs) {
-        // BUG 3: seharusnya $mhs['id'] == $id
+
+        // BUG 3: kondisi salah, seharusnya $mhs['id'] == $id
         if ($mhs['nim'] == $id) {
             $_SESSION['mahasiswa'][$index]['nama'] = $_POST['nama'];
             $_SESSION['mahasiswa'][$index]['nim'] = $_POST['nim'];
@@ -25,17 +26,37 @@ if (isset($_POST['update'])) {
 }
 ?>
 
-<h2>Edit Mahasiswa</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Mahasiswa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<form method="POST">
-    <label>Nama</label><br>
-    <input type="text" name="nama" value="<?= $mahasiswa['nama']; ?>"><br><br>
+<div class="container">
+    <h2>Edit Mahasiswa</h2>
 
-    <label>NIM</label><br>
-    <input type="text" name="nim" value="<?= $mahasiswa['nim']; ?>"><br><br>
+    <form method="POST">
+        <div class="form-group">
+            <label>Nama</label>
+            <input type="text" name="nama" value="<?= $mahasiswa['nama']; ?>" required>
+        </div>
 
-    <label>Jurusan</label><br>
-    <input type="text" name="jurusan" value="<?= $mahasiswa['jurusan']; ?>"><br><br>
+        <div class="form-group">
+            <label>NIM</label>
+            <input type="text" name="nim" value="<?= $mahasiswa['nim']; ?>" required>
+        </div>
 
-    <button type="submit" name="update">Update</button>
-</form>
+        <div class="form-group">
+            <label>Jurusan</label>
+            <input type="text" name="jurusan" value="<?= $mahasiswa['jurusan']; ?>" required>
+        </div>
+
+        <button type="submit" name="update" class="btn">Update</button>
+        <a href="index.php" class="btn btn-back">Kembali</a>
+    </form>
+</div>
+
+</body>
+</html>
