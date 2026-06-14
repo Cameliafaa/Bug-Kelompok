@@ -15,8 +15,8 @@ if (isset($_POST['update'])) {
     foreach ($_SESSION['mahasiswa'] as $index => $mhs) {
 
         // BUG 3: kondisi salah, seharusnya $mhs['id'] == $id
-        if ($mhs['nim'] == $id) {
-            $_SESSION['mahasiswa'][$index]['nama'] = $_POST['nama'];
+if ($mhs['id'] == $id) {
+                $_SESSION['mahasiswa'][$index]['nama'] = $_POST['nama'];
             $_SESSION['mahasiswa'][$index]['nim'] = $_POST['nim'];
             $_SESSION['mahasiswa'][$index]['jurusan'] = $_POST['jurusan'];
         }
